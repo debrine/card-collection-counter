@@ -1,0 +1,38 @@
+/* Container for the text field */
+.labelled-input {
+  position: relative;
+  margin-top: 16px;
+}
+
+/* Styling for the input element */
+.labelled-input input {
+  padding: 8px;
+  font-size: 16px;
+  /* border: 1px solid rgba(0, 0, 0, 0.42); */
+  border: 1px solid;
+  border-color: white;
+
+  border-radius: 8px;
+  background: transparent;
+  /* outline: none; */
+  transition: border-bottom-color 0.3s;
+}
+
+/* Change underline on focus */
+.labelled-input input:focus {
+  border-bottom-color: #1976d2; /* MUI's primary blue */
+  border-bottom-width: 2px;
+}
+
+/* Styling for the label */
+.labelled-input label {
+  position: absolute;
+  top: -16px;
+  left: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  /* color: rgba(0, 0, 0, 0.6); */
+  color: white;
+
+  pointer-events: none; /* So clicks hit the input */
+}
