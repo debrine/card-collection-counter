@@ -6,7 +6,7 @@ type Props = {};
 export default function Register({}: Props) {
   return (
     <>
-      <h1>Register</h1> <RegisterForm />
+      <span className='ccc-header'>Register</span> <RegisterForm />
     </>
   );
 }
