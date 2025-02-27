@@ -6,13 +6,15 @@ type Props = {
   imageSource?: string;
   width?: string;
 };
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 export default function DisplayCard({
   label,
   onClick = () => {},
-  imageSource = 'https://picsum.photos/80',
-  width = '200px',
+  imageSource,
+  width = '240px',
 }: Props) {
+  console.log('image source', imageSource);
   return (
     <div
       className='dc-container'
@@ -20,8 +22,12 @@ export default function DisplayCard({
         width,
       }}
       onClick={onClick}>
-      <img src={imageSource} />
-      <span className='dc-container-label'>{label}</span>
+      <img
+        src={`${SERVER_URL}/public/${imageSource}`}
+        loading='lazy'
+        alt={label}
+      />
+      {/* <span className='dc-container-label'>{label}</span> */}
     </div>
   );
 }

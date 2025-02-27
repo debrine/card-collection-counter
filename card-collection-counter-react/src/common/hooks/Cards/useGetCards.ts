@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MOCK_CARDS } from '../../../mockData';
+import { getCards } from '../../../api/cards.api';
+import useAsync from '../useAsync';
 
 export function useGetCards({}) {
-  const [cards, setCards] = useState(MOCK_CARDS);
+  const { value, loading, error, refresh } = useAsync(() => getCards(1), []);
 
   return {
-    cards,
+    cardGroups: value,
   };
 }

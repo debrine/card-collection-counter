@@ -3,15 +3,15 @@ import { useParams } from 'react-router';
 import { useGetCards } from '../../../common/hooks/Cards/useGetCards';
 import DisplayCard from '../../../components/DisplayCard/DisplayCard';
 import { useGetCollectionDetails } from '../../../common/hooks/Collections/useGetCollectionDetails';
+import CardSections from '../components/CardSection';
 
 type Props = {};
-
 export default function CardsPage({}: Props) {
   const { collectionID } = useParams();
   const { collectionDetails } = useGetCollectionDetails({
     collectionID,
   });
-  const { cards } = useGetCards({});
+  const { cardGroups } = useGetCards({});
   return (
     <div
       className='container'
@@ -23,19 +23,12 @@ export default function CardsPage({}: Props) {
       <span className='ccc-header'>
         Browse Cards For {collectionDetails.name}
       </span>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
-          width: '80%',
-        }}>
-        {cards.map((card) => (
-          <span key={card.id} style={{}}>
-            <DisplayCard label={card.name} key={card.id} />
-          </span>
-        ))}
-      </div>
+
+      <CardSections
+        value={cardGroups?.value}
+        items={cardGroups?.items ?? []}
+        subGroups={cardGroups?.subGroups}
+      />
     </div>
   );
 }
