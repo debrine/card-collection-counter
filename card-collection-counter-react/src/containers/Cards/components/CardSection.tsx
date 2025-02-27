@@ -3,12 +3,6 @@ import { Card } from '../cards.types';
 import DisplayCard from '../../../components/DisplayCard/DisplayCard';
 import { ListSectionHeader } from '../../../components/ListSectionHeader/ListSectionHeader';
 
-type Props = {
-  header?: any;
-  rows: Card[];
-  children: any;
-};
-
 export type Group<T> = {
   value: string | null;
   sortValue?: string;
@@ -30,15 +24,6 @@ export default function CardSections({
   return (
     <>
       {value !== null && (
-        // <h2
-        //   style={{
-        //     textAlign: 'left',
-        //     // marginLeft: `${depth * 4}rem`,
-        //     marginLeft: '3rem',
-        //     width: '80%',
-        //   }}>
-        //   {value}
-        // </h2>
         <ListSectionHeader
           label={value}
           indentLevel={depth}
