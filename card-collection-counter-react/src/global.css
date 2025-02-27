@@ -53,3 +53,15 @@
   font-size: 3rem;
   font-weight: 600;
 }
+
+.ccc-subheader {
+  /* color: var(--accent-text-dark); */
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.hoverable:hover {
+  opacity: 80%;
+  cursor: pointer;
+}

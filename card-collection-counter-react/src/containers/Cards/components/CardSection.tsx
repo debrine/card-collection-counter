@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '../cards.types';
 import DisplayCard from '../../../components/DisplayCard/DisplayCard';
+import { ListSectionHeader } from '../../../components/ListSectionHeader/ListSectionHeader';
 
 type Props = {
   header?: any;
@@ -23,53 +24,67 @@ export default function CardSections({
   items,
   subGroups,
   depth = 0,
-}: Group) {
+}: Group<Card>) {
+  const [isSectionCollapsed, setIsSectionCollapsed] = useState<boolean>(false);
+
   return (
     <>
       {value !== null && (
-        <h2
-          style={{
-            textAlign: 'left',
-            // marginLeft: `${depth * 4}rem`,
-            marginLeft: '3rem',
-            width: '80%',
-          }}>
-          {value}
-        </h2>
+        // <h2
+        //   style={{
+        //     textAlign: 'left',
+        //     // marginLeft: `${depth * 4}rem`,
+        //     marginLeft: '3rem',
+        //     width: '80%',
+        //   }}>
+        //   {value}
+        // </h2>
+        <ListSectionHeader
+          label={value}
+          indentLevel={depth}
+          isSectionCollapsed={isSectionCollapsed}
+          toggleIsSectionCollapsed={() =>
+            setIsSectionCollapsed(!isSectionCollapsed)
+          }
+        />
       )}
 
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'flex-start',
-          width: `${CARD_WIDTH * 4}px`,
-        }}>
-        {items.map((card) => (
-          <span
-            key={card.id}
+      {!isSectionCollapsed && (
+        <>
+          <div
             style={{
-              marginTop: '1rem',
-              marginBottom: '1rem',
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'flex-start',
+              width: `${CARD_WIDTH * 4}px`,
             }}>
-            <DisplayCard
-              label={card.name}
-              key={card.id}
-              imageSource={card.metadata.url}
-            />
-          </span>
-        ))}
-      </div>
-      {subGroups &&
-        subGroups.map((group) => (
-          <CardSections
-            key={group.value}
-            value={group.value}
-            items={group.items}
-            subGroups={group.subGroups}
-            depth={depth + 1}
-          />
-        ))}
+            {items.map((card) => (
+              <span
+                key={card.id}
+                style={{
+                  marginTop: '1rem',
+                  marginBottom: '1rem',
+                }}>
+                <DisplayCard
+                  label={card.name}
+                  key={card.id}
+                  imageSource={card.metadata.url}
+                />
+              </span>
+            ))}
+          </div>
+          {subGroups &&
+            subGroups.map((group) => (
+              <CardSections
+                key={group.value}
+                value={group.value}
+                items={group.items}
+                subGroups={group.subGroups}
+                depth={depth + 1}
+              />
+            ))}
+        </>
+      )}
     </>
   );
 }
