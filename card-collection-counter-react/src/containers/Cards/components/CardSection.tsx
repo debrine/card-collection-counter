@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Card } from '../cards.types';
 import DisplayCard from '../../../components/DisplayCard/DisplayCard';
 import { ListSectionHeader } from '../../../components/ListSectionHeader/ListSectionHeader';
@@ -21,11 +21,10 @@ export default function CardSections({
 }: Group<Card>) {
   const [isSectionCollapsed, setIsSectionCollapsed] = useState<boolean>(false);
 
-  console.log('section value', value);
-  console.log('section items', items);
+  console.log('rerender section value', value);
   return (
     <>
-      {value !== null && (
+      {value != null && (
         <ListSectionHeader
           label={value}
           indentLevel={depth}

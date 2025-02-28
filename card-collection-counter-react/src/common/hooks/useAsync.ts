@@ -12,7 +12,6 @@ export default function useAsync<T = any>(
   const memoizedCallback = useCallback(async () => {
     setLoading(true);
     setError(null);
-    setValue(null);
 
     try {
       console.log('triggering callback');
