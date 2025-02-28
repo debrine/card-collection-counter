@@ -14,7 +14,6 @@ export default function DisplayCard({
   imageSource,
   width = '240px',
 }: Props) {
-  console.log('image source', imageSource);
   return (
     <div
       className='dc-container'

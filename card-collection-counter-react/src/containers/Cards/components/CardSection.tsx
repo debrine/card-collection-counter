@@ -21,6 +21,8 @@ export default function CardSections({
 }: Group<Card>) {
   const [isSectionCollapsed, setIsSectionCollapsed] = useState<boolean>(false);
 
+  console.log('section value', value);
+  console.log('section items', items);
   return (
     <>
       {value !== null && (

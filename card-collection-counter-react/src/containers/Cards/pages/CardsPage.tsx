@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useGetCards } from '../../../common/hooks/Cards/useGetCards';
 import DisplayCard from '../../../components/DisplayCard/DisplayCard';
@@ -11,7 +11,7 @@ export default function CardsPage({}: Props) {
   const { collectionDetails } = useGetCollectionDetails({
     collectionID,
   });
-  const { cardGroups } = useGetCards({});
+  const { cardGroups, updateSearchString } = useGetCards();
   return (
     <div
       className='container'
@@ -24,6 +24,7 @@ export default function CardsPage({}: Props) {
         Browse Cards For {collectionDetails.name}
       </span>
 
+      <input onChange={(event) => updateSearchString(event.target.value)} />
       <CardSections
         value={cardGroups?.value}
         items={cardGroups?.items ?? []}
