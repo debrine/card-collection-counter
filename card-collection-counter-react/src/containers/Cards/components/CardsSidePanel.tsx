@@ -23,14 +23,26 @@ export default function CardsSidePanel({ onSearchChange }: Props) {
     <div
       className='side-panel'
       style={{
+        position: 'sticky',
+        top: 0,
         display: 'flex',
         flexDirection: 'column',
         width: '250px',
-        height: '100%',
+        height: '100vh',
         backgroundColor: 'var(--background-color, #242424)',
         padding: '20px',
         borderRight: '1px solid var(--border-color, rgba(255, 255, 255, 0.1))',
+        overflowY: 'auto',
+        msOverflowStyle: 'none', // Hide scrollbar in IE/Edge
+        scrollbarWidth: 'none', // Hide scrollbar in Firefox
       }}>
+      <style>
+        {`
+          .side-panel::-webkit-scrollbar {
+            display: none;  /* Hide scrollbar in Chrome/Safari/Webkit */
+          }
+        `}
+      </style>
       <div
         className='search-section'
         style={{

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useGetCards } from '../../../common/hooks/Cards/useGetCards';
 import DisplayCard from '../../../components/DisplayCard/DisplayCard';
@@ -13,32 +13,56 @@ export default function CardsPage({}: Props) {
     collectionID,
   });
   const { cardGroups, updateSearchString } = useGetCards();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Reset scroll position when search results update
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [cardGroups]);
 
   return (
     <div
       style={{
         display: 'flex',
-        height: '100vh',
+        height: '100%',
         width: '100%',
+        overflow: 'hidden', // Prevent outer container from scrolling
       }}>
       <CardsSidePanel onSearchChange={updateSearchString} />
 
-      <div
+      <main
         style={{
           flex: 1,
-          padding: '20px',
-          overflowY: 'auto',
+          height: '100%',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
         }}>
-        <span className='ccc-header'>
-          Browse Cards For {collectionDetails.name}
-        </span>
+        <div
+          style={{
+            padding: '20px',
+          }}>
+          <span className='ccc-header'>
+            Browse Cards For {collectionDetails.name}
+          </span>
+        </div>
 
-        <CardSections
-          value={cardGroups?.value}
-          items={cardGroups?.items ?? []}
-          subGroups={cardGroups?.subGroups}
-        />
-      </div>
+        <div
+          ref={scrollContainerRef}
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+            padding: '0 20px 20px 20px',
+          }}>
+          <CardSections
+            value={cardGroups?.value}
+            items={cardGroups?.items ?? []}
+            subGroups={cardGroups?.subGroups}
+          />
+        </div>
+      </main>
     </div>
   );
 }

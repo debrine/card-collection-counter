@@ -2,7 +2,13 @@ import AppRoutes from './Routes';
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+      }}>
       <AppRoutes />
     </div>
   );
