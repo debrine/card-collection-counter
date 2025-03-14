@@ -20,7 +20,8 @@ export function ListSectionHeader({
         display: 'flex',
         alignItems: 'center',
         width: '100%',
-        marginLeft: `${indentLevel * 4}rem`,
+        marginLeft: `${indentLevel * 2}rem`,
+        paddingLeft: '1rem',
       }}
       onClick={toggleIsSectionCollapsed}
       className='hoverable'>

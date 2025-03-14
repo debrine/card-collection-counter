@@ -4,6 +4,7 @@ import { useGetCards } from '../../../common/hooks/Cards/useGetCards';
 import DisplayCard from '../../../components/DisplayCard/DisplayCard';
 import { useGetCollectionDetails } from '../../../common/hooks/Collections/useGetCollectionDetails';
 import CardSections from '../components/CardSection';
+import CardsSidePanel from '../components/CardsSidePanel';
 
 type Props = {};
 export default function CardsPage({}: Props) {
@@ -12,24 +13,32 @@ export default function CardsPage({}: Props) {
     collectionID,
   });
   const { cardGroups, updateSearchString } = useGetCards();
+
   return (
     <div
-      className='container'
       style={{
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        height: '100vh',
+        width: '100%',
       }}>
-      <span className='ccc-header'>
-        Browse Cards For {collectionDetails.name}
-      </span>
+      <CardsSidePanel onSearchChange={updateSearchString} />
 
-      <input onChange={(event) => updateSearchString(event.target.value)} />
-      <CardSections
-        value={cardGroups?.value}
-        items={cardGroups?.items ?? []}
-        subGroups={cardGroups?.subGroups}
-      />
+      <div
+        style={{
+          flex: 1,
+          padding: '20px',
+          overflowY: 'auto',
+        }}>
+        <span className='ccc-header'>
+          Browse Cards For {collectionDetails.name}
+        </span>
+
+        <CardSections
+          value={cardGroups?.value}
+          items={cardGroups?.items ?? []}
+          subGroups={cardGroups?.subGroups}
+        />
+      </div>
     </div>
   );
 }

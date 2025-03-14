@@ -40,24 +40,26 @@ export default function CardSections({
           <div
             style={{
               display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'flex-start',
-              width: `${CARD_WIDTH * 4}px`,
+              justifyContent: 'center',
+              width: '100%',
             }}>
-            {items.map((card) => (
-              <span
-                key={card.id}
-                style={{
-                  marginTop: '1rem',
-                  marginBottom: '1rem',
-                }}>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'flex-start',
+                gap: '1rem',
+                width: '100%',
+                maxWidth: `${CARD_WIDTH * 4 + 48}px`, // Account for gaps
+              }}>
+              {items.map((card) => (
                 <DisplayCard
-                  label={card.name}
                   key={card.id}
+                  label={card.name}
                   imageSource={card.metadata.url}
                 />
-              </span>
-            ))}
+              ))}
+            </div>
           </div>
           {subGroups &&
             subGroups.map((group) => (
