@@ -43,6 +43,9 @@ export default function CardsPage({}: Props) {
         <div
           style={{
             padding: '20px',
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
           }}>
           <span className='ccc-header'>
             Browse Cards For {collectionDetails.name}

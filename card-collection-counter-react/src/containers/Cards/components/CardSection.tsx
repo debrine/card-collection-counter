@@ -42,7 +42,6 @@ export default function CardSections({
               display: 'flex',
               justifyContent: 'center',
               width: '100%',
-              marginBottom: '0.5rem',
             }}>
             <div
               style={{
@@ -64,7 +63,9 @@ export default function CardSections({
           </div>
           {subGroups &&
             subGroups.map((group) => (
-              <div key={group.value} style={{ marginBottom: '3rem' }}>
+              <div
+                key={group.value}
+                style={{ marginBottom: depth === 0 ? '2rem' : '0rem' }}>
                 <CardSections
                   value={group.value}
                   items={group.items}
